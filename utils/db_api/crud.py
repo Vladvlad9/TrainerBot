@@ -6,13 +6,19 @@ from utils.db_api.models import Users
 
 
 class UsersCrud(object):
+
     @staticmethod
-    def add_user(id_user: int, name: str):
-        with Session(binds=engine) as sessions:
-            sessions.execute(
+    def add_user(id_users: int, name: str, position) -> None:
+        with Session(bind=engine) as session:
+            session.add(
                 Users(
-                    id_user=id_user,
-                    name=name
+                    id_users=id_users,
+                    name=name,
+                    positions=position
                 )
             )
-            sessions.commit()
+            session.commit()
+
+
+
+
